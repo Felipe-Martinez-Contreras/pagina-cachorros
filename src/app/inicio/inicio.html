@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Cachorros - Sagrada Familia, Curicó</title>
+    
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-img">
+                    <img src="cachorro.png" alt="logo" style="width: 50px; height: auto;">
+                </div>
+                <span>LOS <span>CACHORROS</span></span>
+            </a>
+            <div class="nav-right">
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#noticias">Noticias</a></li>
+                        <li><a href="#equipo">Equipo</a></li>
+                        <li><a href="#historia">Historia</a></li>
+                        <li><a href="#tienda">Tienda</a></li>
+                        <li><a href="#socio">Hazte Socio</a></li>
+                    </ul>
+                </nav>
+                <div class="header-social">
+                    <a href="#" class="header-social-icon">
+                        <img src="instagram.png" alt="ig" style="width: 30px; height: auto;">
+                    </a>
+                    <a href="#" class="header-social-icon">
+                        <img src="facebook.png" alt="fb" style="width: 30px; height: auto;">
+                    </a>
+                    <a href="#" class="header-social-icon">
+                        <img src="tik-tok.png" alt="tt" style="width: 30px; height: auto;">
+                    </a>
+                    <a href="#" class="header-social-icon">
+                        <img src="youtube.png" alt="yt" style="width: 30px; height: auto;">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+  <div class="carousel">
+    <div class="carousel-container" id="carouselContainer">
+      <div class="carousel-slide slide-bg-1">
+        <div class="hero-content">
+          <h1>LOS CACHORROS</h1>
+          <p>Orgullo de Sagrada Familia, Curicó</p>
+        </div>
+      </div>
+      <div class="carousel-slide slide-bg-2">
+        <div class="hero-content">
+          <h1>ÚLTIMA VICTORIA</h1>
+          <p>Ganamos 2-1 y seguimos invictos</p>
+        </div>
+      </div>
+      <div class="carousel-slide slide-bg-3">
+        <div class="hero-content">
+          <h1>NUEVOS REFUERZOS</h1>
+          <p>El plantel se refuerza para ir por todo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones con eventos JS puros -->
+    <button class="carousel-nav carousel-prev" onclick="changeSlide(-1)">❮</button>
+    <button class="carousel-nav carousel-next" onclick="changeSlide(1)">❯</button>
+
+    <div class="carousel-dots">
+      <span class="carousel-dot" onclick="currentSlide(1)"></span>
+      <span class="carousel-dot" onclick="currentSlide(2)"></span>
+      <span class="carousel-dot" onclick="currentSlide(3)"></span>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const container = document.getElementById('carouselContainer');
+    const dots = document.querySelectorAll('.carousel-dot');
+
+    function showSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+        currentIndex = index;
+
+        const offset = -index * (100 / slides.length);
+        container.style.transform = `translateX(${offset}%)`;
+
+        dots.forEach(dot => dot.classList.remove('active'));
+        if (dots[index]) {
+            dots[index].classList.add('active');
+        }
+    }
+
+    window.changeSlide = function (direction) {
+        showSlide(currentIndex + direction);
+    }
+
+    window.currentSlide = function (index) {
+        showSlide(index - 1);
+    }
+
+    setInterval(() => {
+        showSlide(currentIndex + 1);
+    }, 8000);
+});
+</script>
+
+
+
+
+     
+
+
+    <section id="noticias" class="news-section">
+        <div class="container">
+            <h2 class="section-title">Últimas Noticias</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-card-img">📰 Imagen de la Noticia</div>
+                    <div class="news-card-content">
+                        <h3>Los Cachorros anuncia nueva contratación para la temporada</h3>
+                        <p>El club de Sagrada Familia oficializó la llegada de un nuevo refuerzo para fortalecer el plantel...</p>
+                        <span class="news-date">20 JUL 2025</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-card-img">⚽ Imagen de la Noticia</div>
+                    <div class="news-card-content">
+                        <h3>Preparación intensa para el próximo partido</h3>
+                        <p>El equipo trabaja fuerte en la cancha municipal preparándose para el importante encuentro del fin de semana...</p>
+                        <span class="news-date">19 JUL 2025</span>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-card-img">🏆 Imagen de la Noticia</div>
+                    <div class="news-card-content">
+                        <h3>Los Cachorros lideran el torneo regional</h3>
+                        <p>Con una excelente campaña, el club curicano mantiene la primera posición en la tabla de posiciones...</p>
+                        <span class="news-date">18 JUL 2025</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="sponsors-section">
+        <div class="container">
+            <h3 class="sponsors-title">Nuestros Patrocinadores</h3>
+            <div class="sponsors-grid">
+                <div class="sponsor-logo">PATROCINADOR PRINCIPAL</div>
+                <div class="sponsor-logo">PATROCINADOR OFICIAL</div>
+                <div class="sponsor-logo">PROVEEDOR DEPORTIVO</div>
+                <div class="sponsor-logo">SOCIO COMERCIAL</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="match-section">
+        <div class="container">
+            <h2 class="section-title">Próximo Partido</h2>
+            <div class="match-container">
+                <div class="team">
+                    <div class="team-name">LOS CACHORROS</div>
+                    <div class="team-logo">
+                        <img src="cachorro.png" alt="" style="width: 80px; height: auto;">
+                    </div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team">
+                    <div class="team-name">LOS FANTASMAS</div>
+                    <div class="team-logo">
+                        <img src="fantasma.png" alt="" style="width: 80px; height: auto;">
+                    </div>
+                </div>
+            </div>
+            <div class="match-info">
+                <p><strong>Domingo, 27 de Julio • 15:30</strong></p>
+                <p>Cancha Municipal de Sagrada Familia</p>
+                <a href="#" class="btn-primary" style="margin-top: 1rem;">Comprar Entradas</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Los Cachorros</h3>
+                    <p>Tradición, historia y pasión. El club de Sagrada Familia, Curicó, que representa con orgullo a nuestra comunidad.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">t</a>
+                        <a href="#" class="social-icon">i</a>
+                        <a href="#" class="social-icon">y</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#">Noticias</a></li>
+                        <li><a href="#">Equipo Profesional</a></li>
+                        <li><a href="#">Divisiones Menores</a></li>
+                        <li><a href="#">Escuela de Fútbol</a></li>
+                        <li><a href="#">Historia</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Membresías</h3>
+                    <ul>
+                        <li><a href="#">Hazte Socio</a></li>
+                        <li><a href="#">Beneficios</a></li>
+                        <li><a href="#">Carnet</a></li>
+                        <li><a href="#">Centro del Socio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Sagrada Familia</li>
+                        <li>Curicó - Región del Maule</li>
+                        <li>Chile</li>
+                        <li>Teléfono: +56 75 234 5678</li>
+                        <li>Email: contacto&#64;loscachorros.cl</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const container = document.getElementById('carouselContainer');
+    const dots = document.querySelectorAll('.carousel-dot');
+
+    function showSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+        currentIndex = index;
+
+        const offset = -index * (100 / slides.length);
+        container.style.transform = `translateX(${offset}%)`;
+
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
+    }
+
+    window.changeSlide = function (direction) {
+        showSlide(currentIndex + direction);
+    }
+
+    window.currentSlide = function (index) {
+        showSlide(index - 1);
+    }
+
+    // Opcional: auto-slide
+    setInterval(() => {
+        showSlide(currentIndex + 1);
+    }, 8000);
+});
+</script>
+
+</html>
