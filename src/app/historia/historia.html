@@ -1,0 +1,58 @@
+<div class="historia-container">
+      <!-- Header Section -->
+      <div class="header-section">
+        <div class="club-logo">
+          <div class="shield">
+            <span class="team-name">LOS CACHORROS</span>
+            <span class="location">SAGRADA FAMILIA</span>
+          </div>
+        </div>
+        <h1 class="main-title">Nuestra Historia</h1>
+        <p class="subtitle">
+          Desde nuestros humildes comienzos hasta convertirnos en el orgullo de Sagrada Familia
+        </p>
+      </div>
+
+      <!-- Timeline Section -->
+      <div class="timeline-section">
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+          
+          <div class="timeline-item" 
+               *ngFor="let event of historiaEvents; let i = index"
+               [class.left]="i % 2 === 0"
+               [class.right]="i % 2 !== 0">
+            
+            <div class="timeline-content">
+              <div class="year-badge">{{ event.year }}</div>
+              <h3 class="event-title">{{ event.title }}</h3>
+              <p class="event-description">{{ event.description }}</p>
+              <div class="timeline-dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div class="stats-section">
+        <h2 class="section-title">En Números</h2>
+        <div class="stats-grid">
+          <div class="stat-card" *ngFor="let stat of clubStats">
+            <div class="stat-number">{{ stat.number }}</div>
+            <div class="stat-label">{{ stat.label }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Values Section -->
+      <div class="values-section">
+        <h2 class="section-title">Nuestros Valores</h2>
+        <div class="values-grid">
+          <div class="value-card" *ngFor="let value of clubValues">
+            <div class="value-icon">{{ value.icon }}</div>
+            <h3 class="value-title">{{ value.title }}</h3>
+            <p class="value-description">{{ value.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>

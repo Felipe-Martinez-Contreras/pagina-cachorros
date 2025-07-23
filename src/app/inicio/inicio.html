@@ -20,7 +20,7 @@
                     <ul class="nav-menu">
                         <li><a href="#home">Inicio</a></li>
                         <li><a href="#noticias">Noticias</a></li>
-                        <li><a href="#equipo">Equipo</a></li>
+                        <li><a href="#equipo">Categorías</a></li>
                         <li><a href="#historia">Historia</a></li>
                         <li><a href="#tienda">Tienda</a></li>
                         <li><a href="#socio">Hazte Socio</a></li>
@@ -45,74 +45,90 @@
     </header>
 
     <section id="home" class="hero">
-  <div class="carousel">
-    <div class="carousel-container" id="carouselContainer">
-      <div class="carousel-slide slide-bg-1">
-        <div class="hero-content">
-          <h1>LOS CACHORROS</h1>
-          <p>Orgullo de Sagrada Familia, Curicó</p>
+        <section class="carousel-section">
+        <div class="carousel-container">
+          <div class="carousel-wrapper">
+            <!-- Imágenes del carrusel -->
+            <div class="carousel-track" 
+                 [style.transform]="'translateX(' + translateX() + ')'">
+              @for (image of images(); track image.src; let i = $index) {
+                <div class="carousel-slide">
+                  <img 
+                    [src]="image.src" 
+                    [alt]="image.alt"
+                    class="carousel-image"
+                    (load)="onImageLoad()"
+                    (error)="onImageError($event)">
+                  @if (image.title || image.description) {
+                    <div class="carousel-caption">
+                      @if (image.title) {
+                        <h3>{{ image.title }}</h3>
+                      }
+                      @if (image.description) {
+                        <p>{{ image.description }}</p>
+                      }
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Controles de navegación -->
+            <button 
+              class="carousel-btn carousel-btn-prev"
+              (click)="previousSlide()"
+              [disabled]="currentIndex() === 0 && !infinite"
+              aria-label="Imagen anterior">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <button 
+              class="carousel-btn carousel-btn-next"
+              (click)="nextSlide()"
+              [disabled]="currentIndex() === images().length - 1 && !infinite"
+              aria-label="Siguiente imagen">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Indicadores -->
+          <div class="carousel-indicators">
+            @for (image of images(); track image.src; let i = $index) {
+              <button 
+                class="carousel-indicator"
+                [class.active]="i === currentIndex()"
+                (click)="goToSlide(i)"
+                [attr.aria-label]="'Ir a imagen ' + (i + 1)">
+              </button>
+            }
+          </div>
         </div>
-      </div>
-      <div class="carousel-slide slide-bg-2">
-        <div class="hero-content">
-          <h1>ÚLTIMA VICTORIA</h1>
-          <p>Ganamos 2-1 y seguimos invictos</p>
+      </section>
+
+      <!-- Contenido adicional del inicio -->
+      <section class="inicio-content">
+        <div class="content-grid">
+          <div class="content-card">
+            <h2>Nuestros Servicios</h2>
+            <p>Ofrecemos una amplia gama de servicios de alta calidad para satisfacer todas tus necesidades.</p>
+          </div>
+          <div class="content-card">
+            <h2>Acerca de Nosotros</h2>
+            <p>Con años de experiencia en el sector, nos comprometemos a brindar el mejor servicio posible.</p>
+          </div>
+          <div class="content-card">
+            <h2>Contáctanos</h2>
+            <p>¿Tienes alguna pregunta? No dudes en ponerte en contacto con nuestro equipo.</p>
+          </div>
         </div>
-      </div>
-      <div class="carousel-slide slide-bg-3">
-        <div class="hero-content">
-          <h1>NUEVOS REFUERZOS</h1>
-          <p>El plantel se refuerza para ir por todo</p>
-        </div>
-      </div>
-    </div>
+      </section>
+    </section>
 
-    <!-- Botones con eventos JS puros -->
-    <button class="carousel-nav carousel-prev" onclick="changeSlide(-1)">❮</button>
-    <button class="carousel-nav carousel-next" onclick="changeSlide(1)">❯</button>
 
-    <div class="carousel-dots">
-      <span class="carousel-dot" onclick="currentSlide(1)"></span>
-      <span class="carousel-dot" onclick="currentSlide(2)"></span>
-      <span class="carousel-dot" onclick="currentSlide(3)"></span>
-    </div>
-  </div>
-</section>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    let currentIndex = 0;
-    const slides = document.querySelectorAll('.carousel-slide');
-    const container = document.getElementById('carouselContainer');
-    const dots = document.querySelectorAll('.carousel-dot');
-
-    function showSlide(index) {
-        if (index < 0) index = slides.length - 1;
-        if (index >= slides.length) index = 0;
-        currentIndex = index;
-
-        const offset = -index * (100 / slides.length);
-        container.style.transform = `translateX(${offset}%)`;
-
-        dots.forEach(dot => dot.classList.remove('active'));
-        if (dots[index]) {
-            dots[index].classList.add('active');
-        }
-    }
-
-    window.changeSlide = function (direction) {
-        showSlide(currentIndex + direction);
-    }
-
-    window.currentSlide = function (index) {
-        showSlide(index - 1);
-    }
-
-    setInterval(() => {
-        showSlide(currentIndex + 1);
-    }, 8000);
-});
-</script>
 
 
 
